@@ -1,0 +1,25 @@
+{
+  "name": "inject-webfontloader",
+  "version": "1.0.0",
+  "description": "Injects WebFontLoader.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AriesDatuin/inject-webfontloader.git"
+  },
+  "keywords": [
+    "googlefonts",
+    "typekit",
+    "webfonts",
+    "webfontloader"
+  ],
+  "author": "Aries Datuin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AriesDatuin/inject-webfontloader/issues"
+  },
+  "homepage": "https://github.com/AriesDatuin/inject-webfontloader#readme"
+}
