@@ -14,7 +14,7 @@
 </tr>
 <tr>
 <td>Node Version</td>
-<td>>= 6.4.1</td>
+<td>6.4.1</td>
 </tr>
 <tr>
 <td>Gulp Version</td>
@@ -36,7 +36,6 @@ $ npm i --save-dev inject-webfontloader
 When using Adobe Edge Web Fonts, you can use the typekit module by passing in a catenated list of fonts in the id parameter and set the api parameter to point to the Edge Web Fonts URL. [More info](https://github.com/typekit/webfontloader#adobe-edge-web-fonts)
 
 ```js
-
 import gulp from "gulp";
 import webfontloader from "inject-webfontloader";
 
@@ -49,7 +48,6 @@ export function injectwebfontloader() {
                .pipe(gulp.dest("./"));
 
 }
-
 ```
 
 
@@ -57,7 +55,6 @@ export function injectwebfontloader() {
 To use the Fontdeck module, specify the ID of your website. You can find this ID on the website page within your account settings. [More info](https://github.com/typekit/webfontloader#fontdeck)
 
 ```js
-
 import gulp from "gulp";
 import webfontloader from "inject-webfontloader";
 
@@ -69,7 +66,6 @@ export function injectwebfontloader() {
                .pipe(gulp.dest("./"));
 
 }
-
 ```
 
 
@@ -77,7 +73,6 @@ export function injectwebfontloader() {
 When using Fonts.com web fonts specify your Project ID. [More info](https://github.com/typekit/webfontloader#fontscom)
 
 ```js
-
 import gulp from "gulp";
 import webfontloader from "inject-webfontloader";
 
@@ -92,15 +87,13 @@ export function injectwebfontloader() {
                .pipe(gulp.dest("./"));
 
 }
-
 ```
 
 
 ### Google Fonts
-When using Fonts.com web fonts specify your Project ID. [More info](https://github.com/typekit/webfontloader#google)
+Using Google's Font API, name the font families you'd like to load. You can use the same syntax as in the Font API to specify styles. Please note that the Google module does not support the FVD syntax that is used in the custom module. [More info](https://github.com/typekit/webfontloader#google)
 
 ```js
-
 import gulp from "gulp";
 import webfontloader from "inject-webfontloader";
 
@@ -108,11 +101,42 @@ export function injectwebfontloader() {
     
     return gulp.src("**/*.html")
                .pipe(webfontloader({source: "googlefonts",
-                                    families: ["Comfortaa:300,700", "Droid Sans", "Droid:bold"]}))
+                                    families: ['Droid Sans', 'Droid:bold']}))
                .pipe(gulp.dest("./"));
 
 }
+```
 
+Sometimes the font you requested doesn't come in the default weight (e.g. 400) and you need to explicitly request the variation you want for font events to work (e.g. 300, 700, etc.):
+
+```js
+import gulp from "gulp";
+import webfontloader from "inject-webfontloader";
+
+export function injectwebfontloader() {
+    
+    return gulp.src("**/*.html")
+               .pipe(webfontloader({source: "googlefonts",
+                                    families: ['Open Sans Condensed:300,700']}))
+               .pipe(gulp.dest("./"));
+
+}
+```
+
+If you need to specify character subsets other than the default (e.g.: greek script in addition to latin), you must append the subset string to the requested family string after a colon. The subset string should follow the Google documentation (subset names separated by commas):
+
+```js
+import gulp from "gulp";
+import webfontloader from "inject-webfontloader";
+
+export function injectwebfontloader() {
+    
+    return gulp.src("**/*.html")
+               .pipe(webfontloader({source: "googlefonts",
+                                    families: ['Open Sans Condensed:300,700:latin,greek']}))
+               .pipe(gulp.dest("./"));
+
+}
 ```
 
 
@@ -120,7 +144,6 @@ export function injectwebfontloader() {
 When using Typekit, specify the Kit to retrieve by its ID. You can find the Kit ID within Typekit's Kit Editor interface. [More info](https://github.com/typekit/webfontloader#typekit)
 
 ```js
-
 import gulp from "gulp";
 import webfontloader from "inject-webfontloader";
 
@@ -132,7 +155,6 @@ export function injectwebfontloader() {
                .pipe(gulp.dest("./"));
 
 }
-
 ```
 
 
@@ -142,7 +164,6 @@ To load fonts from any external stylesheet, use the custom module. Here you'll n
 You can specify a specific font variation or set of variations to load and watch by appending the variations separated by commas to the family name separated by a colon. Variations are specified using FVD notation. [More info](https://github.com/typekit/webfontloader#custom)
 
 ```js
-
 import gulp from "gulp";
 import webfontloader from "inject-webfontloader";
 
@@ -154,13 +175,11 @@ export function injectwebfontloader() {
                .pipe(gulp.dest("./"));
 
 }
-
 ```
 
 In this example, the fonts.css file might look something like this:
 
 ```css
-
 @font-face {
     font-family: 'My Font';
     src: ...;
@@ -183,18 +202,15 @@ In this example, the fonts.css file might look something like this:
     font-weight: bold; /* or 700 */
     src: ...;
 }
-
 ```
 
 If your fonts are already included in another stylesheet you can also leave out the urls array and just specify font family names to start font loading. As long as the names match those that are declared in the families array, the proper loading classes will be applied to the html element.
 
 ```css
-
 @font-face {
     font-family:"My Font";
     src:url("assets/fonts/my_font.woff") format("woff");
 }
-
 ```
 
 
