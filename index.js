@@ -45,7 +45,7 @@ module.exports = function(opts) {
 
 					if ( opts.source === "googlefonts" ) { webfontloaderScript += 'google: { families: ['+arrayItemsFamilies+'], text: "'+opts.text+'" }\n'; }
 
-					if (opts.source === "monotype") { webfontloaderScript += 'monotype: { projectId: "'+opts.id+'", version: '+opts.version+', loadAllFonts: '+opts.loadAllFonts+' }\n'; }
+					if (opts.source === "monotype" || opts.source === "fontsdotcom" || opts.source === "fontscom") { webfontloaderScript += 'monotype: { projectId: "'+opts.id+'", version: '+opts.version+', loadAllFonts: '+opts.loadAllFonts+' }\n'; }
 
 					if (opts.source === "typekit") { webfontloaderScript += 'typekit: { id: "'+opts.id+'", api: "'+opts.api+'" }\n'; }
 

@@ -1,9 +1,13 @@
 .aws
 .DS_Store
+_Configurations
 _Docs
+_Packages
 _Source
 _Stock
 _Versions
+my_node_modules
 node_modules
+tasks
 server.json
 npm-debug.log
