@@ -1,6 +1,6 @@
 {
   "name": "inject-webfontloader",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Injects WebFontLoader with support for Adobe Edge Web Fonts/Typekit, Fontdeck, Fonts.com (Monotype), Google Fonts, and custom fonts.",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/AriesDatuin/inject-webfontloader.git"
   },
+  "bugs": {
+    "url": "https://github.com/AriesDatuin/inject-webfontloader/issues"
+  },
+  "dependencies": {
+    "gulp-util": "^3.0.0",
+    "through2": "^0.5.1"
+  },
+  "directories": {},
+  "engines": {
+    "node": ">= 0.9.0"
+  },
   "keywords": [
     "fontdeck",
     "fonts",
@@ -18,6 +29,13 @@
     "typekit",
     "webfonts",
     "webfontloader"
+  ],
+  "main": "./index.js",
+  "maintainers": [
+    {
+      "name": "Aries",
+      "email": "aries@ariesdatuin.com"
+    }
   ],
   "author": "Aries Datuin",
   "license": "MIT",
