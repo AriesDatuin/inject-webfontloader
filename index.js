@@ -1,13 +1,31 @@
-var through = require('through2'),
+let through = require('through2'),
 	gutil = require('gulp-util');
 
 module.exports = function(opts) {
 
 	opts = opts || {};
-	opts.fonts = opts.fonts || '';
+
+	opts.source = opts.source || '';
+
+	opts.id = opts.id || '';
+	opts.api = opts.api || '';
+	opts.families = opts.families || '';
+	opts.urls = opts.urls || '';
+	opts.text = opts.text || '';
+	opts.version = opts.version || '';
+	opts.loadAllFonts = opts.loadAllFonts === false ? false : true;
+
+	opts.classes = opts.classes === false ? false : true;
+	opts.events = opts.events === false ? false : true;
+	opts.context = opts.context || '';
+	opts.timeout = opts.timeout || '';
+
 	opts.tag = opts.tag || 'head';
 
-	var arrayItems = "'" + opts.fonts.join("','") + "'";
+	let arrayItemsFamilies = "'" + opts.families.join("','") + "'",
+		arrayItemsUrls = "'" + opts.urls.join("','") + "'",
+		arrayItemsContext = "'" + opts.context.join("','") + "'";
+
 
 	return through.obj(function(file, enc, cb) {
 
@@ -19,16 +37,25 @@ module.exports = function(opts) {
 
 		var webfontloaderScript = "<script>\n"+
 
-				"WebFontConfig = {\n"+
+				"WebFontConfig = {\n";
 
-					"google: {\n"+
+					if ( opts.source === "custom" ) { webfontloaderScript += 'custom: { families: ['+arrayItemsFamilies+'], urls: ['+arrayItemsUrls+'] }\n'; }
 
-						'families: ['+arrayItems+']\n'+
+					if ( opts.source === "fontdeck" ) { webfontloaderScript += 'fontdeck: { id: "'+opts.id+'" }\n'; }
 
-					"}\n"+
+					if ( opts.source === "googlefonts" ) { webfontloaderScript += 'google: { families: ['+arrayItemsFamilies+'], text: "'+opts.text+'" }\n'; }
+
+					if (opts.source === "monotype") { webfontloaderScript += 'monotype: { projectId: "'+opts.id+'", version: '+opts.version+', loadAllFonts: '+opts.loadAllFonts+' }\n'; }
+
+					if (opts.source === "typekit") { webfontloaderScript += 'typekit: { id: "'+opts.id+'", api: "'+opts.api+'" }\n'; }
 
 
-				"};\n"+
+				webfontloaderScript += ", classes: "+opts.classes+"\n";
+				webfontloaderScript += ", events: "+opts.events+"\n";
+				webfontloaderScript += ", context: frames["+arrayItemsContext+"]\n";
+				webfontloaderScript += ", timeout: "+opts.timeout+"\n";
+
+				webfontloaderScript += "};\n"+
 
 
 				"(function(d) {\n"+
@@ -44,11 +71,6 @@ module.exports = function(opts) {
 						"s.parentNode.insertBefore(wf, s);\n"+
 
 				"})(document);";
-
-
-
-
-				//"</script>"
 
 			webfontloaderScript += "</script>\n  </"+opts.tag+">\n";
 
