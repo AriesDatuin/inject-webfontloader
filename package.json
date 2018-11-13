@@ -1,6 +1,6 @@
 {
   "name": "inject-webfontloader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Injects WebFontLoader.",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,10 @@
     "url": "git+https://github.com/AriesDatuin/inject-webfontloader.git"
   },
   "keywords": [
+    "fontdeck",
+    "fonts",
     "googlefonts",
+    "monotype"
     "typekit",
     "webfonts",
     "webfontloader"
